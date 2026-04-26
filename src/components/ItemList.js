@@ -1,0 +1,17 @@
+import { observer } from 'mobx-react-lite'
+import React, { useContext } from 'react'
+import { Context } from '..'
+import Item from './Item'
+
+const ItemList = observer(() => {
+    const { item } = useContext(Context)
+    return (
+        <div className='d-flex flex-wrap'>
+            {item.items.map((item) => 
+                <Item key={item.id} item={item}/>
+            )}
+        </div>
+    )
+})
+
+export default ItemList
