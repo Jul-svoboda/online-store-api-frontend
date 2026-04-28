@@ -7,16 +7,15 @@ import { fetchOneItem } from '../http/itemsApi';
 const ItemPage = () => {
     const [item, setItem] = useState({info: []})
     const {id} = useParams()
-    console.log({id})
     useEffect(() => {
         fetchOneItem(id).then(data => setItem(data))
-    })
+    }, [id])
 
     return (
         <Container >
             <div className='mt-5 d-flex flex-row'>
                 <Col md={4} className='d-flex flex-column align-items-center'>
-                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL + item.img}/>
+                    <Image width={300} height={300} src={item.img}/>
                 </Col>
                 <Col md={4}>
                     <div className='d-flex flex-column align-items-center justify-content-center'>
