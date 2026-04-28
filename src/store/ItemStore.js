@@ -2,28 +2,14 @@ import {makeAutoObservable} from "mobx"
 
 export default class ItemStore {
     constructor() {
-        this._types = [
-            {id: 1, name: 'stul'},
-            {id: 2, name: 'divan'},
-            {id: 3, name: 'stol'},
-            {id: 4, name: 'bads'},
-        ]
-        this._brands = [
-            {id: 1, name: 'ikea'},
-            {id: 2, name: 'obi'},
-        ]
-        this._items = [
-            {id: 1, name: 'divanIkea', price: 2500, rating: 4, img: `C:/testpostman/360_F_975084524_1aTorkFPo1iWbXKB736zLxH0aiWcwxU1.jpg`},
-            {id: 2, name: 'divanObi', price: 2500, rating: 3, img: `C:/testpostman/pryamoj-divan-1.jpg`},
-            {id: 3, name: 'stulIkea', price: 2500, rating: 2, img: `C:/testpostman/97be36d0a58598cc64966fa4eff29eb4.jpg`},
-            {id: 4, name: 'stulObi', price: 2500, rating: 5, img: `C:/testpostman/e44319435bbd0021da54ea7c6f422dd8.jpg`},
-            {id: 5, name: 'divanIkea', price: 2500, rating: 4, img: `C:/testpostman/360_F_975084524_1aTorkFPo1iWbXKB736zLxH0aiWcwxU1.jpg`},
-            {id: 6, name: 'divanObi', price: 2500, rating: 3, img: `C:/testpostman/pryamoj-divan-1.jpg`},
-            {id: 7, name: 'stulIkea', price: 2500, rating: 2, img: `C:/testpostman/97be36d0a58598cc64966fa4eff29eb4.jpg`},
-            {id: 8, name: 'stulObi', price: 2500, rating: 5, img: `C:/testpostman/e44319435bbd0021da54ea7c6f422dd8.jpg`},
-        ]
+        this._types = []
+        this._brands = []
+        this._items = []
         this._selectedType = {}
         this._selectedBrand = {}
+        this._page = 1
+        this._totalCount = 0
+        this._limit = 3
         makeAutoObservable(this)
     }
 
@@ -37,10 +23,21 @@ export default class ItemStore {
         this._items = items
     }
     setSelectedType(type) {
+        this.setPage(1)
         this._selectedType = type
     }
     setSelectedBrand(brand) {
+        this.setPage(1)
         this._selectedBrand = brand
+    }
+    setPage(page) {
+        this._page = page
+    }
+    setTotalCount(totalCount) {
+        this._totalCount = totalCount
+    }
+    setLimit(limit) {
+        this._limit = limit
     }
 
     get types() {
@@ -57,5 +54,14 @@ export default class ItemStore {
     }
     get selectedBrand() {
         return this._selectedBrand
+    }
+    get page() {
+        return this._page
+    }
+    get totalCount() {
+        return this._totalCount
+    }
+    get limit() {
+        return this._limit
     }
 }

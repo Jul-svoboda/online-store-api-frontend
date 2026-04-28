@@ -9,7 +9,7 @@ const Item = ({item}) => {
   return (
     <Col md={3}>
         <Card className='mt-3' style={{width: 150, cursor: 'pointer'}} border='light'>
-            <Image onClick={() => navigate(ITEM_ROUTE + '/' + item.id)} width={150} height={150} src={item.image} />
+            <Image onClick={() => navigate(ITEM_ROUTE + '/' + item.id)} width={150} height={150} src={process.env.REACT_APP_API_URL + item.img} />
             <div className='text-black-50 mt-1 d-flex flex-row justify-content-between align-items-center'>
                 <div> Stol... </div>
                 <div>
